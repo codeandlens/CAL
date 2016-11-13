@@ -1,0 +1,17 @@
+<#include "header.html">
+
+<div class="container">
+	<div class="row">
+		<#list members as member>
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+			<a href="/view/${member.id}">
+			</a>
+                    ${member.name}
+                     ${member.sername}
+                      ${member.nickname}
+                       ${member.email}
+		</div>
+		</#list>
+	</div>
+</div>
+<#include "footer.html">

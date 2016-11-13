@@ -1,0 +1,85 @@
+<#include "header.html">
+	<style>
+	[ng-cloak] {
+		display: none !important;
+	}
+	</style>
+        <!--<script src="/js/jquery.min.js"></script>-->
+	<script src="/js/angular.min.js"></script>
+	<div ng-app="App" ng-controller="Controller" class="container" ng-cloak>
+		
+<!--		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="p in posts">
+				<a href="/view-member/{{p.id}}">
+					<div class="panel panel-info highlight">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								{{p.name}} {{p.sername}}
+							</h3>
+						</div>
+						<div class="panel-body">
+							<p>
+								{{p.email}}
+							</p>
+						</div>
+					</div>
+				</a>
+                            <div style="align-content: flex-end">
+                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" ng-click="deleteMember()"></button>
+                                </div>
+                            </div>
+		</div>-->
+            
+            
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+
+                <!-- Table -->
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr class="info">
+                        <td>#</td>
+                        <td>name</td>
+                        <td>sername</td>
+                        <td>nickname</td>
+                        <td>email</td>
+                        <td>address</td>
+                        <td>tel</td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="m in members">
+                        <td><a href="/view-member/{{m.id}}">{{m.id}}</a></td>
+                        <td><a href="/view-member/{{m.id}}">{{m.name}}</a></td>
+                        <td><a href="/view-member/{{m.id}}">{{m.sername}}</a></td>
+                        <td>{{m.nickname}}</td>
+                        <td>{{m.email}}</td>
+                        <td>{{m.address}}</td>
+                        <td>{{m.tel}}</td>
+                        <td> 
+                          <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete($index)"> 
+                            </button>
+                           
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+	</div>
+	
+	<script>
+		angular.module('App', []).controller('Controller', 
+			function ($scope, $http) {			
+				$http.get("/get-member-list").success(function(response) {
+					$scope.members = response;
+				});
+                                
+                          $scope.delete = function(idx) {
+                              //alert(idx)
+                            $scope.members.splice(idx, 1);     
+                          }                         
+                      }
+		);
+        
+       
+        
+	</script>
+<#include "footer.html">
