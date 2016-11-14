@@ -134,7 +134,7 @@ public class CalWeb {
 		
 		Session database = factory.openSession();
 		database.save(member);
-		database.flush();
+		//database.flush();
 		database.close();
              
 			//หาวิธี redirect ไปหา list ไม่ได้ ยัง งงๆอยู่
@@ -170,7 +170,7 @@ public class CalWeb {
 			session.setAttribute("member", member);
 			Session database = factory.openSession();
 			database.update(member);
-			database.flush();
+			//database.flush();
 			database.close();
 			return "redirect:/list-angular";
 		}
