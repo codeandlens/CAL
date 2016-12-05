@@ -23,7 +23,22 @@
             <br>
             <input type="text" ng-model="name">
             <p>{{hello}}</p>
+            
+            --------------------------------------------------------------
+            <br>
+            <input type="text" ng-model="name1"/>
+            <label>Object</label>
+            <input type="text" ng-model="user.name1"/>
+            <div class="nested" ng-controller="MyNestedController">
+                <label>Primitive</label>
+                <input type="text" ng-model="name1"/>
+                <label>Parent.name1</label>
+                <input type="text" ng-model="$parent.name1"/>
+                <label>Object</label>
+                <input type="text" ng-model="user.name1"/> 
+            </div>
         </div>
+        <a href="/angularjs3"><input type="button" class="btn btn-primary" value="Angular JS 3" ></a>
     </body>
     
     <script>
@@ -53,6 +68,15 @@
                 }
             });
             
+            
+            //share variable ระหว่าง controller
+            $scope.name1 = 'chivas';
+            $scope.user = {name1 : 'regal'};
+            
+            
+        });
+        
+        app.controller('MyNestedController', function ($scope){
             
         });
         

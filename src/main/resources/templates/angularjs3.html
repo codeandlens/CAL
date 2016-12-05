@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html >
+    <head>
+	<script src="/js/angular.min.js"></script>
+        <link href="/css/bootstrap.css" rel="stylesheet" />
+	<link href="/css/main.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+        <title>Hello Angular JS 3</title>
+        
+    </head>
+    <body ng-app="myApp">
+        <h3>TEST Angular 3</h3>
+        <ul>
+            <li>Controller Service</li>
+                <div ng-controller="MyController">
+                    <ul ng-repeat="user in users">
+                        <li>{{user}}</li>
+                    </ul>
+                </div>
+                <div ng-controller="AnotherController">
+                    {{firstUser}}
+                </div>
+            
+            <li>Enabling/Disabling (Directive)</li>
+                <label>
+                <input type="checkbox" ng-model="checked"/>
+                Toggle Button
+                </label>
+
+                <button ng-disabled="checked">
+                     press me
+                </button>
+            <li>Response to User Action (Directive)</li>
+            <my-widget>
+                <p> Hello AngularJS</p>
+            </my-widget>
+            <li>Repeat Rendering (Directive)</li>
+            <my-repeat  repeat="3">
+                <h2>Test Repeat</h2>
+            </my-repeat>
+        </ul>
+        
+        <!--<a href="/angularjs4"><input type="button" class="btn btn-primary" value="Angular JS 4" ></a>-->
+    </body>
+    
+    <script>
+        var app = angular.module('myApp',[]);
+        
+        // service
+        app.factory('UserService', function(){
+            var users = ["arsenal","liverpool","manchester united"];
+            return {
+                all : function (){
+                    return users;
+                },
+                first : function(){
+                    return users[0];
+                } 
+            }
+        });
+        
+        
+        app.controller('MyController',function ($scope,UserService){
+            $scope.users = UserService.all();
+        });
+        
+        app.controller('AnotherController',function ($scope,UserService){
+            $scope.firstUser = UserService.first();
+        });
+        
+        app.directive('myWidget',function (){
+            var linkFunction = function ($scope,element,attributes){
+                var paragraph = element.children()[0];
+                paragraph.onclick = function (){
+                    paragraph.style.backgroundColor = 'red';
+                }
+            }
+            
+            return {
+                restrict : 'E',
+                link : linkFunction
+            }
+        });
+        
+        app.directive('myRepeat',function (){
+            return {
+                restrict : 'E',
+                compile : function (element,attributes){
+                    var content = element.children();
+                    for(var i = 1; i < attributes.repeat; i++){
+                        element.append(content.clone());
+                    }
+                    
+                }
+            }
+        });
+        
+    </script>
+    
+</html>

@@ -41,6 +41,11 @@ public class CalWeb {
         return "angularjs2";
     }
     
+    @RequestMapping("/angularjs3")
+    String angularJS3(){
+        return "angularjs3";
+    }
+    
     SessionFactory factory = new Configuration()
         .addPackage("entity")
         .addAnnotatedClass(Member.class)
