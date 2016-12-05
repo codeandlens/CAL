@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html >
+    <head>
+	<script src="/js/angular.min.js"></script>
+        <link href="/css/bootstrap.css" rel="stylesheet" />
+	<link href="/css/main.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+        <title>Hello Angular JS2</title>
+        
+    </head>
+    <body ng-app="myApp">
+        <h3>TEST Angular2</h3>
+        <div ng-controller="MyController">
+            <p>{{value}} Codeandlens</p>
+            <br>
+            <p ng-init="incrementNumber(20)"></p>
+            <br>
+            {{number}}
+            <br>
+            {{getIncrementNumber()}}
+            <br>
+            <input type="text" ng-model="name">
+            <p>{{hello}}</p>
+        </div>
+    </body>
+    
+    <script>
+        var app = angular.module('myApp',[]);
+        
+        app.controller('MyController', function($scope){
+            
+            $scope.value = 'Chivas Regal';
+            $scope.number = 1;
+            
+            //update variable Controller ผ่าน function
+            $scope.incrementNumber = function (increment){
+                $scope.number += increment;
+            }
+            
+            //Encapsulation Model Value
+            $scope.getIncrementNumber = function (){
+                
+                return $scope.number+10;
+            }
+            
+            //Responding to scope change
+            $scope.name = "";
+            $scope.$watch('name',function (newValue,oldValue){
+                if($scope.name.length > 5){
+                    $scope.hello = "Hello : " + $scope.name;
+                }
+            });
+            
+            
+        });
+        
+    </script>
+    
+</html>

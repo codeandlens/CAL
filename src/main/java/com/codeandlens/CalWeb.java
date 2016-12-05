@@ -31,6 +31,16 @@ public class CalWeb {
         return "index";
     }
     
+    @RequestMapping("/angularjs")
+    String angularJS(){
+        return "angularjs";
+    }
+    
+    @RequestMapping("/angularjs2")
+    String angularJS2(){
+        return "angularjs2";
+    }
+    
     SessionFactory factory = new Configuration()
         .addPackage("entity")
         .addAnnotatedClass(Member.class)
